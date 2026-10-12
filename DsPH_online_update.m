@@ -23,7 +23,7 @@ C(labelsPaired == 0) = -1;
 E = zeros(size(C));
 
 for iteration = 1:params.maxIter
-    systemMatrix = middlePara{1} - V' * V;
+    systemMatrix = middlePara{1} + V' * V;
     rightHandSide = middlePara{2} + V' * (labelsPaired + C .* E);
     if rcond(systemMatrix) < 1e-12
         regularization = 1e-8 * max(norm(systemMatrix, 'fro'), 1);
@@ -53,7 +53,7 @@ for iteration = 1:params.maxIter
         - params.beta2 * nbits * ones(nTextUnpaired, 1) * (middlePara{19} + ones(1, nPaired) * V) ...
         + 2 * params.beta3 * nbits * GT * (middlePara{22} + GI' * BI) ...
         - params.beta3 * nbits * ones(nTextUnpaired, 1) * (middlePara{23} + ones(1, nImageUnpaired) * BI));
-    E = max((V * P - labelsPaired) .* E, 0);
+    E = max(C .* (V * P - labelsPaired), 0);
 end
 
 currentX = [imagePaired; imageUnpaired];

@@ -32,18 +32,6 @@ switch lower(char(dataName))
         params.beta1 = 100000;
         params.beta2 = 1000;
         params.beta3 = 0.001;
-    case 'mscoco'
-        params.alpha1 = 0.01;
-        params.alpha2 = 0.01;
-        params.beta1 = 10000;
-        params.beta2 = 10000;
-        params.beta3 = 0.1;
-    case 'wiki'
-        params.alpha1 = 10;
-        params.alpha2 = 100000;
-        params.beta1 = 100000;
-        params.beta2 = 1000;
-        params.beta3 = 0.01;
     case 'iaprtc-12'
         params.alpha1 = 0.0001;
         params.alpha2 = 0.0001;
